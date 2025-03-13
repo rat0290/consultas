@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta CPF</title>
+</head>
+<body>
+    <h1>Consulta de CPF</h1>
+    <form method="POST">
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" required>
+        <button type="submit">Consultar</button>
+    </form>
+
+    {% if cpf %}
+    <h2>Dados encontrados para CPF: {{ cpf }}</h2>
+    <p>Telefone: {{ telefone }}</p>
+    <p><strong>Nome:</strong> {{ dados['nome'] }}</p>
+    <p><strong>Data de Nascimento:</strong> {{ dados['dataNascimento'] }}</p>
+    <p><strong>Endereço:</strong> {{ dados['logradouro'] }}</p>
+    {% endif %}
+
+    {% if erro %}
+    <p style="color:red">{{ erro }}</p>
+    {% endif %}
+</body>
+</html>
