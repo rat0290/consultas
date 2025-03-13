@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import os
 import requests
 
-# A inicialização do Flask para rodar no ambiente serverless da Vercel
+# Inicializa o Flask com o caminho correto para os templates
 app = Flask(__name__, template_folder=os.path.join(os.path.abspath(os.path.dirname(__file__)), 'templates'))
 
 # Função para encontrar o CPF baseado no telefone
@@ -54,10 +54,8 @@ def index():
             return render_template('index.html', erro="Telefone não encontrado.")
     return render_template('index.html')
 
-# Para a Vercel, usamos uma função que exporta o app
+# Função handler para a Vercel (não precisa de app.run())
 def handler(request):
     with app.app_context():
         return app.full_dispatch_request()
 
-if __name__ == '__main__':
-    app.run(debug=True)
